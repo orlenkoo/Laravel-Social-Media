@@ -1,0 +1,6 @@
+cron:
+# COMMENT BELOW VALUES ON STAGING. UNCOMMENT FOR PRODUCTION
+#- description: quotation follow up reminder
+#  url: /quotations/send-follow-up-reminder-email
+#  target: 1
+#  schedule: every 24 hours

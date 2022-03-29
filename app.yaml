@@ -1,0 +1,47 @@
+#application: webtics-product-live
+#application: webtics-product-staging
+#version: 1 # change to `staging` for staging link and 1 for production version
+runtime: php55
+api_version: 1
+instance_class: F4 # instance class F1 for staging F4 for Production
+automatic_scaling:
+  min_idle_instances: 2 # 1 for staging , 2 for production
+  max_idle_instances: 2 # 1 for staging , 2 for production
+  min_pending_latency: 30ms # default value
+  max_pending_latency: automatic
+
+handlers:
+  - url: /favicon\.ico
+    static_files: public/favicon.ico
+    upload: public/favicon\.ico
+
+  - url: /robots\.txt
+    static_files: public/robots.txt
+    upload: public/robots\.txt
+
+  - url: /privacy_policy\.html
+    static_files: public/privacy_policy.html
+    upload: public/privacy_policy\.html
+
+  - url: /assets/(.*\.(htm$|html$|css$|js$|jpg$|png$|eot$|ttf$|woff$|gif$))
+    static_files: public/assets/\1
+    upload: public/assets/(.*\.(htm$|html$|css$|js$|jpg$|png$|eot$|ttf$|woff$|gif$))
+    application_readable: true
+
+  - url: /.*
+    script: public/index.php
+
+env_variables:
+  APP_ENGINE_ENVIRONMENT: "PRODUCTION" #PRODUCTION AND PRODUCTION
+  PRODUCTION_CLOUD_SQL_INSTANCE: "/cloudsql/webtics-product-live:us-central1:database"
+  PRODUCTION_DB_USERNAME: "root"
+  PRODUCTION_DB_PASSWORD: ""
+  PRODUCTION_DB_NAME: "webtics_product_live"
+  PRODUCTION_STORAGE_BUCKET_NAME: "webtics-product-live-storage"
+  PRODUCTION_UPLOAD_BUCKET_NAME: "webtics-product-live-fileuploads"
+  PRODUCTION_ATTACHMENT_BUCKET_NAME: "webtics-product-live-email-attachments"
+  STAGING_CLOUD_SQL_INSTANCE: "/cloudsql/webtics-product-staging:us-central1:database-product-2"
+  STAGING_DB_NAME: "meetingtracker_product_staging"
+  STAGING_STORAGE_BUCKET_NAME: "meeting-tracker-product-storage-staging"
+  STAGING_UPLOAD_BUCKET_NAME: "meeting-tracker-product-fileuploads-staging"
+  STAGING_ATTACHMENT_BUCKET_NAME: "mt-product-email-attachments-staging"

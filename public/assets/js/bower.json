@@ -1,0 +1,21 @@
+{
+  "name": "bower.json",
+  "authors": [
+    "Suren Dias <suren.dias@webnatics.biz>"
+  ],
+  "description": "to save bower files",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "chartist": "^0.11.0"
+  }
+}
